@@ -31,6 +31,43 @@ paths:
               required:
               - name
               - cpf
+  "/api/v1/people/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    - name: person
+      in: body
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          cpf:
+            type: string
+        required:
+        - name
+        - cpf
+    get:
+      summary: show person
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update person
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: successful
+    delete:
+      summary: delete person
+      responses:
+        '200':
+          description: successful
 servers:
 - url: https://{defaultHost}
   variables:

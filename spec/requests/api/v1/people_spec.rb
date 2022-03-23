@@ -53,7 +53,6 @@ RSpec.describe 'api/v1/people', type: :request do
         end
         run_test!
       end
-
     end
   end
 
@@ -70,7 +69,6 @@ RSpec.describe 'api/v1/people', type: :request do
       required: [ 'name', 'cpf' ]
     }
     
-
     get('show person') do
       response(200, 'successful') do
         after do |example|
@@ -111,7 +109,6 @@ RSpec.describe 'api/v1/people', type: :request do
         end
         run_test!
       end
-
     end
 
     delete('delete person') do
@@ -126,6 +123,5 @@ RSpec.describe 'api/v1/people', type: :request do
         run_test!
       end
     end
-
   end
 end

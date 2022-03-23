@@ -1,6 +1,7 @@
 class Api::V1::PeopleController < ApplicationController
   def index 
     people = Person.order('created_at DESC')
+    
     render json: {status: 'SUCCESS', data: people}, status: :ok
   end
 

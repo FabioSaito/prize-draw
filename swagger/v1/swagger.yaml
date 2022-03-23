@@ -1,0 +1,38 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/people":
+    get:
+      summary: list people
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create person
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                cpf:
+                  type: string
+              required:
+              - name
+              - cpf
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

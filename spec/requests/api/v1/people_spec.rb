@@ -58,6 +58,8 @@ RSpec.describe 'api/v1/people', type: :request do
   end
 
   path '/api/v1/people/{id}' do
+    let(:id) { '2' }
+
     parameter name: 'id', in: :path, type: :string, description: 'id'
     parameter name: :person, in: :body, schema: {
       type: :object,
@@ -71,8 +73,6 @@ RSpec.describe 'api/v1/people', type: :request do
 
     get('show person') do
       response(200, 'successful') do
-        let(:id) { '2' }
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -85,9 +85,8 @@ RSpec.describe 'api/v1/people', type: :request do
     end
 
     put('update person') do
+      consumes 'application/json'
       response(200, 'successful') do
-        consumes 'application/json'
-        let(:id) { '2' }
         let(:person) { { name: 'Maria do Teste', cpf: '123' } }
 
         after do |example|
@@ -99,12 +98,24 @@ RSpec.describe 'api/v1/people', type: :request do
         end
         run_test!
       end
+
+      response(422, 'successful') do
+        let(:person) { { name: '' } }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+        run_test!
+      end
+
     end
 
     delete('delete person') do
       response(200, 'successful') do
-        let(:id) { '2' }
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

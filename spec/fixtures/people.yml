@@ -1,0 +1,24 @@
+lucky1:
+  name: 'Alfredo'
+  cpf: '111.111.111-11'
+  born_on: '2000-01-01'
+
+lucky2:
+  name: 'Beatriz'
+  cpf: '222.222.222-22'
+  born_on: '2000-02-02'
+
+lucky3:
+  name: 'Carlos'
+  cpf: '333.333.333-33'
+  born_on: '2000-03-03'
+
+lucky4:
+  name: 'Daniel'
+  cpf: '444.444.444-44'
+  born_on: '2000-04-04'
+
+lucky5:
+  name: 'Frans'
+  cpf: '555.555.555-55'
+  born_on: '2000-05-05'

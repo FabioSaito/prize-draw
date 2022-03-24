@@ -1,6 +1,6 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/people', type: :request do
+RSpec.describe 'swagger_helper', type: :request do
   fixtures :people
 
   path '/api/v1/people' do

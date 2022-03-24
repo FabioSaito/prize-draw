@@ -12,7 +12,6 @@ RSpec.describe 'PeopleController', type: :request do
 
   describe 'GET /show' do
     let(:selected_person) { people(:lucky1) }
-
     before { get api_v1_person_path(selected_person.id) }
 
     it 'returns http success' do
@@ -24,7 +23,7 @@ RSpec.describe 'PeopleController', type: :request do
     end
   end
 
-  describe 'GET /create' do
+  describe 'POST /create' do
     describe 'when valid person' do
       before do 
         valid_person_post_body = { name: 'Valid Person Test', cpf: '000.000.000-00' }
@@ -56,9 +55,8 @@ RSpec.describe 'PeopleController', type: :request do
     end
   end
 
-  describe 'GET /delete' do
+  describe 'DELETE /destroy' do
     let(:deleted_person) { people(:lucky1) }
-
     before { delete api_v1_person_path(deleted_person.id) }
 
     it 'returns http success' do
@@ -70,7 +68,7 @@ RSpec.describe 'PeopleController', type: :request do
     end
   end
 
-  describe 'GET /update' do
+  describe 'PUT /update' do
     let(:updated_person) { people(:lucky1) }
 
     describe 'when valid attributes' do

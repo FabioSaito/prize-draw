@@ -42,5 +42,4 @@ class Api::V1::PeopleController < Api::BaseController
   def person_params
     params.require(:person).permit(:name, :cpf, :born_on)
   end
-
 end

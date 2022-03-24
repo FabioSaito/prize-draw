@@ -1,9 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/people', type: :request do
+  fixtures :people
 
   path '/api/v1/people' do
-
     get('list people') do
       response(200, 'successful') do
         after do |example|
@@ -29,7 +29,7 @@ RSpec.describe 'api/v1/people', type: :request do
       }
 
       response(200, 'successful') do
-        let(:person) { { name: 'Joao do Teste', cpf: '911.222.333-44' } }
+        let(:person) { { name: 'Test Person', cpf: '911.222.333-44' } }
         
         after do |example|
           example.metadata[:response][:content] = {
@@ -42,7 +42,7 @@ RSpec.describe 'api/v1/people', type: :request do
       end
 
       response(422, 'error') do
-        let(:person) { { name: 'Joao do Teste' } }
+        let(:person) { { name: 'Test Person' } }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -57,7 +57,7 @@ RSpec.describe 'api/v1/people', type: :request do
   end
 
   path '/api/v1/people/{id}' do
-    let(:id) { '2' }
+    let(:id) { people(:lucky1).id }
 
     parameter name: 'id', in: :path, type: :string, description: 'id'
     parameter name: :person, in: :body, schema: {
@@ -85,7 +85,7 @@ RSpec.describe 'api/v1/people', type: :request do
     put('update person') do
       consumes 'application/json'
       response(200, 'successful') do
-        let(:person) { { name: 'Maria do Teste', cpf: '123' } }
+        let(:person) { { name: 'New Test Name', cpf: '123' } }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -97,7 +97,7 @@ RSpec.describe 'api/v1/people', type: :request do
         run_test!
       end
 
-      response(422, 'successful') do
+      response(422, 'error') do
         let(:person) { { name: '' } }
 
         after do |example|

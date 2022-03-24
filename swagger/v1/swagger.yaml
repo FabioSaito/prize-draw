@@ -62,7 +62,7 @@ paths:
         '200':
           description: successful
         '422':
-          description: successful
+          description: error
     delete:
       summary: delete person
       responses:

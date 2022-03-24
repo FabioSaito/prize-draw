@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'json'
 
 RSpec.describe 'PeopleController', type: :request do
   fixtures :people

@@ -23,5 +23,4 @@ class Api::V1::DrawsController < Api::BaseController
       ActiveSupport::SecurityUtils.secure_compare(token, 'SecurePassword321')
     end
   end
-
 end

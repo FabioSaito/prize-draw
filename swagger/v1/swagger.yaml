@@ -4,6 +4,21 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/draws":
+    post:
+      security:
+      - Token: []
+      summary: create draw
+      responses:
+        '200':
+          description: successful
+        '401':
+          description: Access denied
+    get:
+      summary: list draws
+      responses:
+        '200':
+          description: successful
   "/api/v1/people":
     get:
       summary: list people
@@ -73,3 +88,11 @@ servers:
   variables:
     defaultHost:
       default: localhost
+components:
+  securitySchemes:
+    Token:
+      description: Key necessary to use API calls
+      name: Authorization
+      in: header
+      type: http
+      scheme: bearer

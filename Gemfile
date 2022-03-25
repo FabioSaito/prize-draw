@@ -50,3 +50,6 @@ end
 group :test do
   gem "shoulda-matchers", "~> 5.0"
 end
+
+gem "active_model_serializers", "~> 0.10.0"
+gem "rswag"

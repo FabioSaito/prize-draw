@@ -3,7 +3,6 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/draws', type: :request do
 
   path '/api/v1/draws' do
-
     get('list draws') do
       response(200, 'successful') do
 
@@ -20,7 +19,6 @@ RSpec.describe 'api/v1/draws', type: :request do
 
     post('create draw') do
       security [ Token: [] ]
-      # parameter name: 'Authorization', in: :header, type: :string, value: 'Bearer SecurePassword321'
       response(200, 'successful') do
         let(:Authorization) { "Bearer SecurePassword321" }
 

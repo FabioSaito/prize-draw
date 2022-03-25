@@ -19,6 +19,7 @@ RSpec.describe 'api/v1/draws', type: :request do
 
     post('create draw') do
       security [ Token: [] ]
+      
       response(200, 'successful') do
         let(:Authorization) { "Bearer SecurePassword321" }
 
@@ -45,8 +46,6 @@ RSpec.describe 'api/v1/draws', type: :request do
         end
         run_test!
       end
-
-
     end
   end
 end

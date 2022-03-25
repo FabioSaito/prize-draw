@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_22_132024) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_24_171944) do
+  create_table "draws", force: :cascade do |t|
+    t.string "winner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "name", null: false
     t.string "cpf", null: false

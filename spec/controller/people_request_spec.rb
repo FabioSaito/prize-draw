@@ -1,12 +1,34 @@
 require 'rails_helper'
 
-RSpec.describe 'PeopleController', type: :request do
+RSpec.describe 'Api::V1::PeopleController', type: :request do
   fixtures :people
 
   describe 'GET /index' do
-    it 'returns http success' do
-      get api_v1_people_path
-      expect(response).to have_http_status(:ok)
+    describe 'when table is populated' do 
+      before { get api_v1_people_path }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:ok)
+      end
+      
+      it 'retuns all elements from Person table' do
+        expect(response.body).to include(*Person.pluck(:name))
+      end
+    end
+
+    describe 'when table is empty' do 
+      before do
+        Person.delete_all
+        get api_v1_people_path 
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(:ok)
+      end
+      
+      it 'returns no element from Person table' do
+        expect(response.body).to eq('[]')
+      end
     end
   end
 
@@ -49,7 +71,7 @@ RSpec.describe 'PeopleController', type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
       
-      it 'do not creates invalid person' do
+      it 'does not create invalid person' do
         expect(response.body).to include( 'cpf', 'has already been taken' )
       end
     end
@@ -81,7 +103,7 @@ RSpec.describe 'PeopleController', type: :request do
         expect(response).to have_http_status(:success)
       end
       
-      it 'update person attributes' do
+      it 'updates person attributes' do
         expect(response.body).to include('000.000.000-00')
       end
     end
@@ -96,7 +118,7 @@ RSpec.describe 'PeopleController', type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
       
-      it 'do not update person attributes' do
+      it 'does not update person attributes' do
         expect(response.body).to include( 'cpf', 'has already been taken' )
       end
     end

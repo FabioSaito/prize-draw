@@ -16,10 +16,11 @@ RSpec.describe 'Api::V1::DrawsController', type: :request do
   end
 
   describe 'POST /create' do
-    before(:all) do
-      post api_v1_draws_path, headers: {Authorization: 'Bearer SecurePassword321'}
+    before do
+      allow(ActiveSupport::SecurityUtils).to receive(:secure_compare).and_return true
+      post api_v1_draws_path, headers: {Authorization: 'Bearer RandomPassword'}
     end
-
+    
     it 'returns http success' do
       expect(response).to have_http_status(:success)
     end

@@ -3,17 +3,15 @@ class Api::V1::DrawsController < Api::BaseController
   before_action :authenticate, except: [ :index ]
 
   def index
-    winners = Draw.all
+    winners = Person.winners
     
     render json: winners, each_serializer: DrawSerializer , status: :ok
   end
 
   def create
-    winner = Person.offset(rand(Person.count)).first
-    Draw.create(winner: winner.name)
-    winner.destroy
+    winner = DrawRandomSample.call()
 
-    render json: winner, serializer: PersonSerializer, status: 200
+    render json: winner, serializer: DrawSerializer, status: :ok
   end
 
   private

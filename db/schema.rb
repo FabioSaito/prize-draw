@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_24_171944) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_25_204517) do
   create_table "draws", force: :cascade do |t|
     t.string "winner"
     t.datetime "created_at", null: false
@@ -23,6 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_24_171944) do
     t.date "born_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "drawn"
+    t.boolean "deleted"
+    t.datetime "drawn_date"
   end
 
 end

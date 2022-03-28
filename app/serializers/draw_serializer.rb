@@ -1,7 +1,7 @@
 class DrawSerializer < ActiveModel::Serializer
-  attributes :winner, :created_at
+  attributes :name, :drawn_date
 
-  def created_at 
-    object.created_at.to_s
+  def drawn_date 
+    object.drawn_date.to_s
   end
 end

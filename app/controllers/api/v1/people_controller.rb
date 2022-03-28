@@ -1,6 +1,6 @@
 class Api::V1::PeopleController < Api::BaseController
   def index 
-    people = Person.order(created_at: :desc)
+    people = Person.available.order(created_at: :desc)
 
     render json: people, each_serializer: PersonSerializer, status: :ok
   end
@@ -23,7 +23,7 @@ class Api::V1::PeopleController < Api::BaseController
 
   def destroy 
     person = Person.find(params[:id])
-    person.destroy
+    person.update!(deleted: :true)
 
     render json: person, serializer: PersonSerializer, status: :ok
   end

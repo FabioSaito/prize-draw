@@ -21,7 +21,17 @@ RSpec.configure do |config|
         title: 'API V1',
         version: 'v1'
       },
-      paths: {},
+      paths: {
+        '/api/v1/draws' => {
+          post:{
+            security: [
+              {
+                Token: []
+              }
+            ],
+          }
+        }
+      },
       servers: [
         {
           url: 'http://localhost:3000',
@@ -31,7 +41,19 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          Token: {
+            description: 'Key necessary to use API calls',
+            name: 'Authorization',
+            in: :header,
+            type: :http,
+            scheme: :bearer
+          }
+        }
+      },
+      
     }
   }
 

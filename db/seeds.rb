@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+case Rails.env
+when "development"
+  99.times do |index|
+    Person.create!(
+      name: "Person #{index}", 
+      cpf: "000.000.000-#{index}", 
+      born_on: "20#{index}-01-01",
+      drawn: :false,
+      deleted: :false,
+      drawn_date: nil)
+  end
+end
+
+p "Created #{Person.count} people in #{Rails.env}"
